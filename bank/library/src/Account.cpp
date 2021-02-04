@@ -28,4 +28,14 @@ namespace bank
 	{
 		return owner.lock()->getName();
 	}
+	void Account::transaction(double amount, TransactionRecordPtr record)
+	{
+		balance+=amount;
+		transactionHistory.insert(record);
+	}
+	const std::set<TransactionRecordPtr>& Account::getTransactionHistory() const
+	{
+		return transactionHistory;
+	}
+
 }

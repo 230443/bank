@@ -24,6 +24,7 @@ using namespace bank;
 uint64_t Customer::counter = 0;
 uint64_t Account::counter = 0;
 
+
 BOOST_AUTO_TEST_SUITE(BankingSystemTestSuit)
 
 

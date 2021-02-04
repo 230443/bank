@@ -5,12 +5,10 @@
 #ifndef ACCOUNT_H
 #define ACCOUNT_H
 
-#include <vector>
+#include <set>
 #include <memory>
 #include "typedefs.h"
 
-
-struct TransactionRecord;
 
 
 namespace bank
@@ -25,8 +23,9 @@ namespace bank
 		double getBalance() const;
 		CustomerPtr getOwner() const;
 		std::string getName();
+		const std::set<TransactionRecordPtr>& getTransactionHistory() const;
 
-		//virtual void transaction(double amount, TransactionRecordPtr record);
+		virtual void transaction(double amount, TransactionRecordPtr record);
 		//std::string getOwnerInfo();
 
 // member fields
@@ -34,7 +33,7 @@ namespace bank
 		static uint64_t counter;
 	protected:
 		double balance;
-		std::vector<TransactionRecordPtr> transaction_history;
+		std::set<TransactionRecordPtr> transactionHistory;
 		std::weak_ptr<Customer> owner;
 	private:
 

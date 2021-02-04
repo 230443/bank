@@ -41,7 +41,7 @@ class Customer : public std::enable_shared_from_this<Customer>
 		AccountPtr newAccount();
 
 		bool LogIn(std::string password);
-		std::shared_ptr<Account> at(int position);
+		AccountPtr at(int position);
 		void take(const std::shared_ptr<Account>& account);
 
 

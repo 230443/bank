@@ -7,6 +7,7 @@
 
 #include <boost/test/unit_test.hpp>
 #include <memory>
+#include <TransactionRecord.h>
 
 #include "../include/Account.h"
 #include "../include/Customer.h"
@@ -32,6 +33,33 @@ BOOST_AUTO_TEST_SUITE(AccountTestSuit)
 		BOOST_REQUIRE_EQUAL(a2.getNumber(),2);
 		BOOST_REQUIRE_EQUAL(a3.getNumber(),3);
 		BOOST_REQUIRE_EQUAL(a3.getName(),"customer");
+	}
+	BOOST_AUTO_TEST_CASE(Account_transaction_checkBalance)
+	{
+		auto owner = std::make_shared<Customer>(Customer());
+		auto a0 = owner->newAccount();
+		auto a1 = owner->newAccount();
+		//TransactionRecord tr(100,a0,a1);
+		auto tr = std::make_shared<TransactionRecord>(TransactionRecord(100,a0,a1));
+		a0->transaction(-100,tr);
+		a1->transaction(100,tr);
+
+		BOOST_REQUIRE_EQUAL(a0->getBalance(),-100);
+		BOOST_REQUIRE_EQUAL(a1->getBalance(),100);
+	}
+	BOOST_AUTO_TEST_CASE(Account_transaction_checkTransactionHistory)
+	{
+		auto owner = std::make_shared<Customer>(Customer());
+		auto a0 = owner->newAccount();
+		auto a1 = owner->newAccount();
+		//TransactionRecord tr(100,a0,a1);
+		auto tr = std::make_shared<TransactionRecord>(TransactionRecord(100,a0,a1));
+		a0->transaction(-100,tr);
+		a1->transaction(100,tr);
+
+		BOOST_REQUIRE_EQUAL(a0->getTransactionHistory().size(),1);
+		BOOST_REQUIRE_EQUAL(a1->getTransactionHistory().size(),1);
+		BOOST_REQUIRE_EQUAL(*(a0->getTransactionHistory().begin())==*(a1->getTransactionHistory().begin()),true);
 	}
 
 

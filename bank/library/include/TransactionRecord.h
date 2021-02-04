@@ -38,7 +38,7 @@ namespace bank
 			const double amount,
 			AccountPtr formAccount,
 			AccountPtr toAccount,
-			std::string  title)
+			std::string  title = "Transfer")
 			: date(time(0)),
 			  amount(amount),
 			  from_name(formAccount->getName()),
