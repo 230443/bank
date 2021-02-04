@@ -19,9 +19,7 @@ BOOST_AUTO_TEST_SUITE(DataTypesTestSuit)
 	BOOST_AUTO_TEST_CASE(transactionRecord_operators)
 	{
 		bank::TransactionRecord tr1("acconut0", 45184641571, "account1 address ...", 2345678234567, 100, "first transfer");
-		sleep(1);
 		bank::TransactionRecord tr2("acconut0", 45184641571, "account1 address ...", 2345678234567, 100, "first transfer");
-		sleep(1);
 		bank::TransactionRecord tr3("acconut0", 45184641571, "account1 address ...", 2345678234567, 100, "first transfer");
 
 		BOOST_REQUIRE_EQUAL(tr1<tr2,true);

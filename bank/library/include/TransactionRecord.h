@@ -25,7 +25,7 @@ namespace bank
 
 	struct TransactionRecord
 	{
-		const time_t date;
+		const std::chrono::time_point<std::chrono::system_clock> date;
 		const double amount;
 		const std::string from_name;
 		const uint64_t from_accountNumber;
@@ -39,7 +39,7 @@ namespace bank
 			AccountPtr toAccount,
 			const double amount,
 			std::string  title = "Transfer")
-			: date(time(0)),
+			: date(std::chrono::system_clock::now()),
 			  amount(amount),
 			  from_name(formAccount->getName()),
 			  from_accountNumber(formAccount->getNumber()),
@@ -56,7 +56,7 @@ namespace bank
 			double amount,
 			std::string title)
 			: from_name(std::move(fromName)), from_accountNumber(fromAccountNumber), to_name(std::move(toName)),
-			  to_accountNumber(toAccountNumber), title(std::move(title)), date(time(0)), amount(amount)//, c(currency)
+			  to_accountNumber(toAccountNumber), title(std::move(title)), date(std::chrono::system_clock::now()), amount(amount)//, c(currency)
 		{
 		}
 
