@@ -20,8 +20,8 @@ namespace bank
 		std::list<TransactionRecordPtr> transactions;
 		std::map<const uint64_t,std::weak_ptr<Account>> accounts;
 		std::map<const uint64_t,CustomerPtr> customers;
+		//BankingSystem(const BankingSystem&);
 	public:
-		//BankingSystem(const BankingSystem&) = delete;
 		static BankingSystem& Get();
 
 

@@ -52,7 +52,7 @@ namespace bank
 		//Account account(shared_from_this());
 		AccountPtr account = std::make_shared<Account>(weak_from_this());
 		accounts.push_back(account);
-		BankingSystem::Get().takeAccount(accounts.back());
+		bs::Get().takeAccount(accounts.back());
 		return account;
 	}
 }

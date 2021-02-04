@@ -26,9 +26,9 @@ BOOST_AUTO_TEST_SUITE(CustomerTestSuit)
 		Customer c1;
 		Customer c2;
 		Customer c3;
-		BOOST_REQUIRE_EQUAL(c1.getId(), 0);
-		BOOST_REQUIRE_EQUAL(c2.getId(), 1);
-		BOOST_REQUIRE_EQUAL(c3.getId(), 2);
+		BOOST_REQUIRE_LT(c1.getId(), c2.getId());
+		BOOST_REQUIRE_GT(c3.getId(), c2.id);
+		BOOST_REQUIRE_EQUAL(c3.getId(), c3.id);
 	}
 
 

@@ -20,7 +20,7 @@
 //unsigned Customer::counter = 0;
 
 using namespace bank;
-using bs = bank::BankingSystem;
+
 uint64_t Customer::counter = 0;
 uint64_t Account::counter = 0;
 
@@ -51,6 +51,7 @@ BOOST_AUTO_TEST_SUITE(BankingSystemTestSuit)
 	BOOST_AUTO_TEST_CASE(BankingSystem_newCustomer)
 	{
 		auto c3 = std::make_shared<Customer>(Customer("c3"));
+		auto c4 = std::make_shared<Customer>(Customer("c4"));
 		auto c1 = bs::Get().newCustomer();
 		auto c2 = bs::Get().newCustomer();
 
@@ -68,10 +69,20 @@ BOOST_AUTO_TEST_SUITE(BankingSystemTestSuit)
 	BOOST_AUTO_TEST_CASE(BankingSystem_addAccount)
 	{
 		auto c1 = bs::Get().newCustomer();
+		auto c2 = bs::Get().newCustomer();
+		c1->setName("c1");
+		c2->setName("c2");
+
 		auto a1 = c1->newAccount();
+		auto a2 = c1->newAccount();
+		auto a3 = c2->newAccount();
+		auto a4 = c2->newAccount();
 
-
-
+		auto number = a1->getNumber();
+		BOOST_REQUIRE_EQUAL(a1->getName(),c1->getName());
+		BOOST_REQUIRE_EQUAL(bs::Get().getAccount(number)->getName(),"c1");
+		BOOST_REQUIRE_EQUAL(bs::Get().getAccount(number+2)->getName(),"c2");
+		BOOST_REQUIRE_EQUAL(bs::Get().getAccount(number)->getNumber()+3,bs::Get().getAccount(number+3)->getNumber());
 	}
 
 

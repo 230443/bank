@@ -12,16 +12,14 @@ namespace bank
 	class Account;
 	class Customer;
 	class TransactionRecord;
+	class BankingSystem;
 
-
+	using bs = bank::BankingSystem;
 
 	typedef std::shared_ptr<Account> AccountPtr;
 	typedef std::shared_ptr<Customer> CustomerPtr;
 	typedef std::shared_ptr<TransactionRecord> TransactionRecordPtr;
 }
-
-
-#include <memory>
 
 
 

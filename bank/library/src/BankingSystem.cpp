@@ -10,7 +10,6 @@ namespace bank
 	BankingSystem& BankingSystem::Get()
 	{
 		static BankingSystem instance;
-		Customer::counter = 0;
 		return instance;
 	}
 	void BankingSystem::takeCustomer(CustomerPtr customer)
@@ -32,7 +31,7 @@ namespace bank
 	CustomerPtr BankingSystem::newCustomer()
 	{
 		auto newCustomer = std::make_shared<Customer>(Customer());
-		takeCustomer(newCustomer);
+		customers.insert({newCustomer->id,newCustomer});
 		return newCustomer;
 	}
 
