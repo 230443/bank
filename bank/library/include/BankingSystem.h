@@ -8,6 +8,7 @@
 #include <map>
 #include <list>
 #include "typedefs.h"
+#include "TransactionRecord.h"
 //#include "Customer.h"
 
 
@@ -34,8 +35,9 @@ namespace bank
 
 		CustomerPtr newCustomer();
 
-		void transfer(std::shared_ptr<Account> from, int64_t number, std::string& title, double amount);
-		void transfer(std::shared_ptr<Account> from, std::shared_ptr<Account> to, std::string& title, double amount);
+		void transfer(AccountPtr from, int64_t number,double amount, std::string title = "Transfer");
+		void transfer(AccountPtr from, AccountPtr to, double amount, std::string title = "Transfer");
+
 		void addAccount(std::weak_ptr<Account> account);
 		std::shared_ptr<Customer> addCustomer(const Customer& customer);
 

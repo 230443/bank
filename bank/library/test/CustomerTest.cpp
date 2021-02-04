@@ -50,6 +50,19 @@ BOOST_AUTO_TEST_SUITE(CustomerTestSuit)
 		BOOST_REQUIRE_LT(a0->getNumber(), a1->getNumber());
 		BOOST_REQUIRE_EQUAL(a1->getNumber()+1, a2->getNumber());
 	}
+
+	BOOST_AUTO_TEST_CASE(Customer_TransactionHistory)
+	{
+		Customer c0("c0","w1 95-100",457154784);
+		Customer c1("c1","w1 10-950",454584434);
+
+		AccountPtr a[4];
+		a[0] = c0.newAccount();
+		a[1] = c0.newAccount();
+		a[2] = c1.newAccount();
+		a[3] = c1.newAccount();
+
+	}
 /*
 	BOOST_AUTO_TEST_CASE(Customer_getID)
 	{

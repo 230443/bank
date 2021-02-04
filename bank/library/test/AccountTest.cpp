@@ -40,7 +40,7 @@ BOOST_AUTO_TEST_SUITE(AccountTestSuit)
 		auto a0 = owner->newAccount();
 		auto a1 = owner->newAccount();
 		//TransactionRecord tr(100,a0,a1);
-		auto tr = std::make_shared<TransactionRecord>(TransactionRecord(100,a0,a1));
+		auto tr = std::make_shared<TransactionRecord>(TransactionRecord(a0,a1,100));
 		a0->transaction(-100,tr);
 		a1->transaction(100,tr);
 
@@ -53,7 +53,7 @@ BOOST_AUTO_TEST_SUITE(AccountTestSuit)
 		auto a0 = owner->newAccount();
 		auto a1 = owner->newAccount();
 		//TransactionRecord tr(100,a0,a1);
-		auto tr = std::make_shared<TransactionRecord>(TransactionRecord(100,a0,a1));
+		auto tr = std::make_shared<TransactionRecord>(TransactionRecord(a0,a1,100));
 		a0->transaction(-100,tr);
 		a1->transaction(100,tr);
 

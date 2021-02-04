@@ -3,6 +3,8 @@
 //
 
 #include "BankingSystem.h"
+
+#include <utility>
 #include "Customer.h"
 
 namespace bank
@@ -33,6 +35,17 @@ namespace bank
 		auto newCustomer = std::make_shared<Customer>(Customer());
 		customers.insert({newCustomer->id,newCustomer});
 		return newCustomer;
+	}
+	void BankingSystem::transfer(AccountPtr from, AccountPtr to, double amount, std::string title)
+	{
+		auto tr = std::make_shared<TransactionRecord>(TransactionRecord(from,to,100,std::move(title)));
+		from->transaction(-amount,tr);
+		to->transaction(+amount,tr);
+		transactions.push_back(tr);
+	}
+	void BankingSystem::transfer(AccountPtr from, int64_t number, double amount, std::string title)
+	{
+		transfer(std::move(from),getAccount(number),amount,std::move(title));
 	}
 
 }

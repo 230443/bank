@@ -35,9 +35,9 @@ namespace bank
 		//const currency c;
 
 		TransactionRecord(
-			const double amount,
 			AccountPtr formAccount,
 			AccountPtr toAccount,
+			const double amount,
 			std::string  title = "Transfer")
 			: date(time(0)),
 			  amount(amount),

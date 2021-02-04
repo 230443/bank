@@ -55,4 +55,17 @@ namespace bank
 		bs::Get().takeAccount(accounts.back());
 		return account;
 	}
+
+	std::shared_ptr<std::set<TransactionRecordPtr>> Customer::getTransactionHistory()
+	{
+		using namespace std;
+
+		auto TrHist = make_shared<set<TransactionRecordPtr>>();
+		for(const auto& account : accounts)
+		{
+			TrHist->insert(account->getTransactionHistory().begin(),account->getTransactionHistory().end());
+		}
+		return TrHist;
+	}
+
 }

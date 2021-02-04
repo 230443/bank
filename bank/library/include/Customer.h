@@ -29,6 +29,8 @@ class Customer : public std::enable_shared_from_this<Customer>
 		const std::string& getAddress() const;
 		unsigned int getTelephoneNumber() const;
 		const std::list<AccountPtr>& getAccounts() const;
+		std::shared_ptr<std::set<TransactionRecordPtr>> getTransactionHistory();
+
 
 		// setters
 		void setName(const std::string& name);

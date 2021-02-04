@@ -22,6 +22,7 @@
 using namespace bank;
 
 uint64_t Customer::counter = 0;
+
 uint64_t Account::counter = 0;
 
 
@@ -87,9 +88,34 @@ BOOST_AUTO_TEST_SUITE(BankingSystemTestSuit)
 	}
 
 
-	BOOST_AUTO_TEST_CASE(BankingSystem_transfer)
+	BOOST_AUTO_TEST_CASE(BankingSystem_transferOnAccountPtr)
 	{
+		auto c0 = bs::Get().newCustomer();
 
+
+		AccountPtr a[2];
+		a[0] = c0->newAccount();
+		a[1] = c0->newAccount();
+
+
+		bs::Get().transfer(a[0],a[1],100);
+		BOOST_REQUIRE_EQUAL(a[0]->getBalance(),-100);
+		BOOST_REQUIRE_EQUAL(a[1]->getBalance(),100);
+	}
+
+	BOOST_AUTO_TEST_CASE(BankingSystem_transferOnAccountNumbers)
+	{
+		auto c0 = bs::Get().newCustomer();
+		auto c1 = bs::Get().newCustomer();
+
+		AccountPtr a[2];
+		a[0] = c0->newAccount();
+		a[1] = c1->newAccount();
+
+
+		bs::Get().transfer(a[0],a[1]->getNumber(),100);
+		BOOST_REQUIRE_EQUAL(a[0]->getBalance(),-100);
+		BOOST_REQUIRE_EQUAL(a[1]->getBalance(),100);
 	}
 
 	BOOST_AUTO_TEST_CASE(BankingSystem_transferByAccountNumber)
