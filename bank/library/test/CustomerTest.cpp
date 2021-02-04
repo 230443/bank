@@ -47,9 +47,8 @@ BOOST_AUTO_TEST_SUITE(CustomerTestSuit)
 		auto a1 = c.newAccount();
 		auto a2 = c.newAccount();
 
-		BOOST_REQUIRE_EQUAL(a0->getNumber(), 0);
-		BOOST_REQUIRE_EQUAL(a1->getNumber(), 1);
-		BOOST_REQUIRE_EQUAL(a2->getNumber(), 2);
+		BOOST_REQUIRE_LT(a0->getNumber(), a1->getNumber());
+		BOOST_REQUIRE_EQUAL(a1->getNumber()+1, a2->getNumber());
 	}
 /*
 	BOOST_AUTO_TEST_CASE(Customer_getID)

@@ -16,8 +16,8 @@ namespace bank
 	{
 		return balance;
 	}
-	Account::Account(CustomerPtr owner)
-		: number(counter++), balance(0), owner(std::weak_ptr(owner))
+	Account::Account(std::weak_ptr<Customer> owner)
+		: number(counter++), balance(0), owner(owner)
 	{
 	}
 	CustomerPtr Account::getOwner() const

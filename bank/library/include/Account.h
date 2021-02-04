@@ -19,7 +19,7 @@ namespace bank
 	class Account
 	{
 	public:
-		Account(CustomerPtr owner);
+		Account(std::weak_ptr<Customer> owner);
 
 		const uint64_t getNumber() const;
 		double getBalance() const;
