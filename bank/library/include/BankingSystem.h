@@ -34,14 +34,12 @@ namespace bank
 		void takeAccount(AccountPtr account);
 
 		CustomerPtr newCustomer();
+		void deleteCustomer(int64_t id);
 
 		void transfer(AccountPtr from, int64_t number,double amount, std::string title = "Transfer");
 		void transfer(AccountPtr from, AccountPtr to, double amount, std::string title = "Transfer");
 
-		void addAccount(std::weak_ptr<Account> account);
-		std::shared_ptr<Customer> addCustomer(const Customer& customer);
 
-		std::shared_ptr<Customer>GetCustomer(int64_t id);
 
 		std::shared_ptr<Customer> LogIn(std::string password, u_int64_t id);
 

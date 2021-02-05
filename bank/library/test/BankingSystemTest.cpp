@@ -129,6 +129,19 @@ BOOST_AUTO_TEST_SUITE(BankingSystemTestSuit)
 		c0->deleteAccount(number);
 		BOOST_REQUIRE_THROW(bs::Get().getAccount(number),std::invalid_argument);
 	}
+	BOOST_AUTO_TEST_CASE(BankingSystem_DeleteCustomer_CheckAccount)
+	{
+		auto c0 = bs::Get().newCustomer();
+		auto c1 = bs::Get().newCustomer();
+		auto n0 = c0->newAccount()->getNumber();
+		auto n1 = c1->newAccount()->getNumber();
+		bs::Get().deleteCustomer(c0->id);
+		auto id = c0->id;
+		c0.reset();
+		BOOST_REQUIRE_THROW(bs::Get().getAccount(n0),std::exception);
+		BOOST_REQUIRE_THROW(bs::Get().getCustomer(id),std::invalid_argument);
+		BOOST_REQUIRE_EQUAL(bs::Get().getAccount(n1)->number,n1);
+	}
 
 
 

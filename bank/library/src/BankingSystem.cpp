@@ -60,6 +60,11 @@ namespace bank
 	{
 		transfer(std::move(from),getAccount(number),amount,std::move(title));
 	}
+	void BankingSystem::deleteCustomer(int64_t id)
+	{
+		//getCustomer(id).reset();
+		customers.erase(id);
+	}
 
 }
 
