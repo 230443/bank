@@ -17,23 +17,23 @@ namespace bank
 	public:
 
 		virtual void bankMenu() = 0;
-		void newCustomer(char type);
+		void newCustomer(char type = 'x');
 		bool logIn(uint64_t id, const std::string& password);
 
 		virtual void customerMenu() = 0;
-		void logOut();
-		void deleteCustomer();
-		void newAccount(char type);
-		std::shared_ptr<std::set<TransactionRecord>> getCustomerHistory();
+		virtual void logOut();
+		virtual void deleteCustomer();
+		virtual void newAccount(char type = 'x');
+		virtual void getCustomerHistory() = 0;
 
 		virtual void accountMenu() = 0;
-		void deleteAccount();
-		std::shared_ptr<std::set<TransactionRecord>> getAccountHistory();
+		virtual void deleteAccount();
+		virtual void getAccountHistory() = 0;
 		TransactionRecordPtr transfer(AccountPtr to, double amount, std::string title);
 
 	private:
 		CustomerPtr owner;
-		CustomerPtr account;
+		AccountPtr account;
 
 	};
 }

@@ -55,9 +55,9 @@ BOOST_AUTO_TEST_SUITE(AccountTestSuit)
 		a0->transaction(-100,tr);
 		a1->transaction(100,tr);
 
-		BOOST_REQUIRE_EQUAL(a0->getTransactionHistory().size(),1);
-		BOOST_REQUIRE_EQUAL(a1->getTransactionHistory().size(),1);
-		BOOST_REQUIRE_EQUAL(*(a0->getTransactionHistory().begin())==*(a1->getTransactionHistory().begin()),true);
+		BOOST_REQUIRE_EQUAL(a0->getTransactionRecords().size(),1);
+		BOOST_REQUIRE_EQUAL(a1->getTransactionRecords().size(),1);
+		BOOST_REQUIRE_EQUAL(*(a0->getTransactionRecords().begin())==*(a1->getTransactionRecords().begin()),true);
 	}
 
 

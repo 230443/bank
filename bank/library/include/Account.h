@@ -23,7 +23,8 @@ namespace bank
 		double getBalance() const;
 		CustomerPtr getOwner() const;
 		std::string getName();
-		const std::set<TransactionRecordPtr>& getTransactionHistory() const;
+		const std::set<TransactionRecordPtr>& getTransactionRecords() const;
+		std::shared_ptr<std::set<TransactionRecord>> getHistory() const;
 
 		virtual void transaction(double amount, TransactionRecordPtr record);
 		//std::string getOwnerInfo();

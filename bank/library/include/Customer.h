@@ -32,8 +32,8 @@ class Customer : public std::enable_shared_from_this<Customer>
 		unsigned int getTelephoneNumber() const;
 		const std::list<AccountPtr>& getAccounts() const;
 		const AccountPtr getAccount(uint64_t number) const;
-		std::shared_ptr<std::set<TransactionRecordPtr>> getTransactionHistory();
-		std::shared_ptr<std::set<TransactionRecord>> getTransactionHistoryOrdered();
+		std::shared_ptr<std::set<TransactionRecordPtr>> getTransactionRecords();
+		std::shared_ptr<std::set<TransactionRecord>> getHistory();
 
 
 		// setters
@@ -45,11 +45,11 @@ class Customer : public std::enable_shared_from_this<Customer>
 		//member functions
 
 		AccountPtr newAccount();
-		void deleteAccount(uint64_t number);
+		void takeAccount(const AccountPtr& account);
 
-		bool LogIn(std::string password);
+		void deleteAccount(uint64_t number);
+		void deleteAccount(const AccountPtr& account);
 		AccountPtr at(int position);
-		void take(const std::shared_ptr<Account>& account);
 
 
 

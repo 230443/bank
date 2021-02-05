@@ -35,9 +35,17 @@ namespace bank
 		balance+=amount;
 		transactionHistory.insert(record);
 	}
-	const std::set<TransactionRecordPtr>& Account::getTransactionHistory() const
+	const std::set<TransactionRecordPtr>& Account::getTransactionRecords() const
 	{
 		return transactionHistory;
 	}
-
+	std::shared_ptr<std::set<TransactionRecord>> Account::getHistory() const
+	{
+		using namespace std;
+		//shared_ptr<set<TransactionRecord>> history;
+		auto history = make_shared<set<TransactionRecord>>();
+		for (const auto& it : transactionHistory)
+			history->insert(*it);
+		return history;
+	}
 }

@@ -67,7 +67,7 @@ BOOST_AUTO_TEST_SUITE(CustomerTestSuit)
 		bs::Get().transfer(a[1],a[0],3, "tr3");
 		bs::Get().transfer(a[2],a[2],4, "tr4");
 
-		auto History = c0->getTransactionHistory();
+		auto History = c0->getTransactionRecords();
 
 
 		for (const auto& transaction: *History)
@@ -91,7 +91,7 @@ BOOST_AUTO_TEST_SUITE(CustomerTestSuit)
 		bs::Get().transfer(a[1],a[0],3, "tr3");
 		bs::Get().transfer(a[2],a[2],4, "tr4");
 
-		auto History = c0->getTransactionHistoryOrdered();
+		auto History = c0->getHistory();
 
 		double i=1;
 		for (const auto& transaction: *History)

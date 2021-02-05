@@ -6,6 +6,8 @@
 #include "Company.h"
 #include "UserAccount.h"
 
+#include <utility>
+
 namespace bank
 {
 
@@ -47,5 +49,26 @@ namespace bank
 	{
 		account.reset();
 		owner.reset();
+	}
+	void UserAccount::deleteCustomer()
+	{
+		bs::Get().deleteCustomer(owner->id);
+		logOut();
+	}
+	void UserAccount::newAccount(char type)
+	{
+		account = owner->newAccount();
+	}
+	void UserAccount::deleteAccount()
+	{
+		owner->deleteAccount(account);
+		account.reset();
+	}
+	TransactionRecordPtr UserAccount::transfer(AccountPtr to, double amount, std::string title)
+	{
+		if (account != nullptr)
+			return bs::Get().transfer(account,std::move(to),amount,std::move(title));
+		else
+			throw std::exception();
 	}
 }

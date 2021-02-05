@@ -60,29 +60,29 @@ namespace bank
 		return account;
 	}
 
-	std::shared_ptr<std::set<TransactionRecordPtr>> Customer::getTransactionHistory()
+	std::shared_ptr<std::set<TransactionRecordPtr>> Customer::getTransactionRecords()
 	{
 		using namespace std;
 
 		auto TrHist = make_shared<set<TransactionRecordPtr>>();
 		for(const auto& account : accounts)
 		{
-			TrHist->insert(account->getTransactionHistory().begin(),account->getTransactionHistory().end());
+			TrHist->insert(account->getTransactionRecords().begin(), account->getTransactionRecords().end());
 		}
 		return TrHist;
 	}
 
-	std::shared_ptr<std::set<TransactionRecord>> Customer::getTransactionHistoryOrdered()
+	std::shared_ptr<std::set<TransactionRecord>> Customer::getHistory()
 	{
+		using namespace std;
+
 		using namespace std;
 
 		auto TrHist = make_shared<set<TransactionRecord>>();
 		for(const auto& account : accounts)
 		{
-			for (const auto& record : account->getTransactionHistory() )
-			{
-				TrHist->insert(*record);
-			}
+			auto accountHistory = account->getHistory();
+			TrHist->insert(accountHistory->begin(),accountHistory->end());
 		}
 		return TrHist;
 	}
@@ -103,9 +103,26 @@ namespace bank
 			}
 		throw std::invalid_argument("Account already does not exist");
 	}
+	void Customer::deleteAccount(const AccountPtr& account)
+	{
+		for (auto it = accounts.begin(); it != accounts.end();  ++it )
+			if (*it == account)
+			{
+				accounts.erase(it);
+				return;
+			}
+		throw std::invalid_argument("Account does not exist");
+	}
 	bool Customer::isPasswordValid(const std::string& password)
 	{
 		return Customer::password == password;
 	}
+
+	void Customer::takeAccount(const AccountPtr& account)
+	{
+		accounts.push_back(account);
+		bs::Get().takeAccount(accounts.back());
+	}
+
 
 }
