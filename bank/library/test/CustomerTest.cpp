@@ -51,18 +51,59 @@ BOOST_AUTO_TEST_SUITE(CustomerTestSuit)
 		BOOST_REQUIRE_EQUAL(a1->getNumber()+1, a2->getNumber());
 	}
 
-	BOOST_AUTO_TEST_CASE(Customer_TransactionHistory)
+	BOOST_AUTO_TEST_CASE(Customer_TransactionHistory_unordered)
 	{
-		Customer c0("c0","w1 95-100",457154784);
-		Customer c1("c1","w1 10-950",454584434);
+		auto c0 = bs::Get().newCustomer();
+
 
 		AccountPtr a[4];
-		a[0] = c0.newAccount();
-		a[1] = c0.newAccount();
-		a[2] = c1.newAccount();
-		a[3] = c1.newAccount();
+		a[0] = c0->newAccount();
+		a[1] = c0->newAccount();
+		a[2] = c0->newAccount();
+		a[3] = c0->newAccount();
+
+		bs::Get().transfer(a[0],a[3],1, "tr1");
+		bs::Get().transfer(a[3],a[1],2, "tr2");
+		bs::Get().transfer(a[1],a[0],3, "tr3");
+		bs::Get().transfer(a[2],a[2],4, "tr4");
+
+		auto History = c0->getTransactionHistory();
+
+
+		for (const auto& transaction: *History)
+		{
+			BOOST_REQUIRE_CLOSE(transaction->amount,2,200);
+		}
+	}
+
+	BOOST_AUTO_TEST_CASE(Customer_TransactionHistory_ordered)
+	{
+		auto c0 = bs::Get().newCustomer();
+
+
+		AccountPtr a[4];
+		a[0] = c0->newAccount();
+		a[1] = c0->newAccount();
+		a[2] = c0->newAccount();
+		a[3] = c0->newAccount();
+
+		bs::Get().transfer(a[0],a[3],1, "tr1");
+		bs::Get().transfer(a[3],a[1],2, "tr2");
+		bs::Get().transfer(a[1],a[0],3, "tr3");
+		bs::Get().transfer(a[2],a[2],4, "tr4");
+
+		auto History = c0->getTransactionHistoryOrdered();
+
+
+		double i=1;
+
+		for (const auto& transaction: *History)
+		{
+			BOOST_REQUIRE_CLOSE(transaction.amount,i++,0.1);
+		}
 
 	}
+
 /*
 	BOOST_AUTO_TEST_CASE(Customer_getID)
 	{

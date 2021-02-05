@@ -68,4 +68,19 @@ namespace bank
 		return TrHist;
 	}
 
+	std::shared_ptr<std::set<TransactionRecord>> Customer::getTransactionHistoryOrdered()
+	{
+		using namespace std;
+
+		auto TrHist = make_shared<set<TransactionRecord>>();
+		for(const auto& account : accounts)
+		{
+			for (const auto& record : account->getTransactionHistory() )
+			{
+				TrHist->insert(*record);
+			}
+		}
+		return TrHist;
+	}
+
 }

@@ -38,7 +38,7 @@ namespace bank
 	}
 	void BankingSystem::transfer(AccountPtr from, AccountPtr to, double amount, std::string title)
 	{
-		auto tr = std::make_shared<TransactionRecord>(TransactionRecord(from,to,100,std::move(title)));
+		auto tr = std::make_shared<TransactionRecord>(TransactionRecord(from,to,amount,std::move(title)));
 		from->transaction(-amount,tr);
 		to->transaction(+amount,tr);
 		transactions.push_back(tr);

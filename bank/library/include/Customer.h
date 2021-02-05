@@ -30,6 +30,7 @@ class Customer : public std::enable_shared_from_this<Customer>
 		unsigned int getTelephoneNumber() const;
 		const std::list<AccountPtr>& getAccounts() const;
 		std::shared_ptr<std::set<TransactionRecordPtr>> getTransactionHistory();
+		std::shared_ptr<std::set<TransactionRecord>> getTransactionHistoryOrdered();
 
 
 		// setters
