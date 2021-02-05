@@ -3,9 +3,26 @@
 //
 
 #include "TransactionRecord.h"
+#include <ctime>
 
-std::ostream& operator<<(std::ostream& stream, bank::TransactionRecord& rhs)
+std::string getTimeStr(std::chrono::time_point<std::chrono::system_clock> date){
+	std::time_t now = std::chrono::system_clock::to_time_t(date);
+
+	std::string s(30, '\0');
+	std::strftime(&s[0], s.size(), "%Y-%m-%d %H:%M:%S", std::localtime(&now));
+	return s;
+}
+
+
+std::ostream& operator<<(std::ostream& stream, const bank::TransactionRecord& rhs)
 {
-	stream << rhs.title << " " << rhs.amount;
+	stream //<< rhs.date.time_since_epoch().count()<< " "
+		<< getTimeStr(rhs.date) << " "
+		<< rhs.title << " "
+		<< rhs.amount << " "
+		<< rhs.from_name << "("
+		<< rhs.from_accountNumber << ") "
+		<< rhs.to_name << "("
+		<< rhs.to_accountNumber << ")";
 	return stream;
 }

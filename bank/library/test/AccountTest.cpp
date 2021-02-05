@@ -28,10 +28,8 @@ BOOST_AUTO_TEST_SUITE(AccountTestSuit)
 		Account a1(owner);
 		Account a2(owner);
 		Account a3(owner);
-		BOOST_REQUIRE_EQUAL(a0.getNumber(),0);
-		BOOST_REQUIRE_EQUAL(a1.getNumber(),1);
-		BOOST_REQUIRE_EQUAL(a2.getNumber(),2);
-		BOOST_REQUIRE_EQUAL(a3.getNumber(),3);
+		BOOST_REQUIRE_EQUAL(a0.getNumber()+1,a1.getNumber());
+		BOOST_REQUIRE_EQUAL(a2.getNumber()-1,a1.getNumber());
 		BOOST_REQUIRE_EQUAL(a3.getName(),"customer");
 	}
 	BOOST_AUTO_TEST_CASE(Account_transaction_checkBalance)

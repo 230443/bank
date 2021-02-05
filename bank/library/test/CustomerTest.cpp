@@ -80,7 +80,6 @@ BOOST_AUTO_TEST_SUITE(CustomerTestSuit)
 	{
 		auto c0 = bs::Get().newCustomer();
 
-
 		AccountPtr a[4];
 		a[0] = c0->newAccount();
 		a[1] = c0->newAccount();
@@ -94,14 +93,11 @@ BOOST_AUTO_TEST_SUITE(CustomerTestSuit)
 
 		auto History = c0->getTransactionHistoryOrdered();
 
-
 		double i=1;
-
 		for (const auto& transaction: *History)
 		{
 			BOOST_REQUIRE_CLOSE(transaction.amount,i++,0.1);
 		}
-
 	}
 
 /*

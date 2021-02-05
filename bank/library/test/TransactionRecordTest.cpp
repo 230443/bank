@@ -6,6 +6,9 @@
 #include <memory>
 
 #include "../include/TransactionRecord.h"
+#include "../src/TransactionRecord.cpp"
+#include "../include/BankingSystem.h"
+#include "../include/Customer.h"
 //#include "../include/typedefs.h"
 
 
@@ -30,6 +33,29 @@ BOOST_AUTO_TEST_SUITE(DataTypesTestSuit)
 		//BOOST_REQUIRE_EQUAL(tr3==tr3, true);
 		//BOOST_REQUIRE_EQUAL(tr3==tr4, false);
 
+	}
+
+	BOOST_AUTO_TEST_CASE(Customer_TransactionHistory_ordered)
+	{
+		auto c0 = bs::Get().newCustomer();
+
+		AccountPtr a[4];
+		a[0] = c0->newAccount();
+		a[1] = c0->newAccount();
+		a[2] = c0->newAccount();
+		a[3] = c0->newAccount();
+
+		bs::Get().transfer(a[0],a[3],1, "tr1");
+		bs::Get().transfer(a[3],a[1],2, "tr2");
+		bs::Get().transfer(a[1],a[0],3, "tr3");
+		bs::Get().transfer(a[2],a[2],4, "tr4");
+
+		auto History = c0->getTransactionHistoryOrdered();
+
+		for (const auto& transaction: *History)
+		{
+			std::cout << transaction << std::endl;
+		}
 	}
 
 
