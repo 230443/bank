@@ -6,7 +6,7 @@
 #define OOPPROJECT_CUSTOMER_H
 
 #include <string>
-#include <list>
+#include <vector>
 
 #include "typedefs.h"
 #include "Account.h"
@@ -30,7 +30,7 @@ class Customer : public std::enable_shared_from_this<Customer>
 		const std::string& getName() const;
 		const std::string& getAddress() const;
 		unsigned int getTelephoneNumber() const;
-		const std::list<AccountPtr>& getAccounts() const;
+		const std::vector<AccountPtr>& getAccounts() const;
 		const AccountPtr getAccount(uint64_t number) const;
 		std::shared_ptr<std::set<TransactionRecordPtr>> getTransactionRecords();
 		std::shared_ptr<std::set<TransactionRecord>> getHistory();
@@ -73,7 +73,7 @@ protected:
 		std::string password;
 		unsigned int telephoneNumber;
 
-		std::list<AccountPtr> accounts;
+		std::vector<AccountPtr> accounts;
 	};
 
 }

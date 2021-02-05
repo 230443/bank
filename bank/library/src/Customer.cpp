@@ -31,7 +31,7 @@ namespace bank
 	{
 		return telephoneNumber;
 	}
-	const std::list<AccountPtr>& Customer::getAccounts() const
+	const std::vector<AccountPtr>& Customer::getAccounts() const
 	{
 		return accounts;
 	}

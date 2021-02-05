@@ -4,7 +4,7 @@ project(Library)
 #set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
 
 set(SOURCE_FILES
-        src/Customer.cpp include/Customer.h src/TransactionRecord.cpp include/TransactionRecord.h src/Account.cpp include/Account.h include/typedefs.h src/BankingSystem.cpp include/BankingSystem.h src/Person.cpp include/Person.h src/Company.cpp include/Company.h src/UserAccount.cpp include/UserAccount.h)
+        src/Customer.cpp include/Customer.h src/TransactionRecord.cpp include/TransactionRecord.h src/Account.cpp include/Account.h include/typedefs.h src/BankingSystem.cpp include/BankingSystem.h src/Person.cpp include/Person.h src/Company.cpp include/Company.h src/UserAccount.cpp include/UserAccount.h src/UserAccountCLI.cpp include/UserAccountCLI.h)
 
 add_library(Library ${SOURCE_FILES})
 

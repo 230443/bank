@@ -28,8 +28,9 @@ namespace bank
 		}
 		default:
 		{
-			customer = std::make_shared<Customer>(Customer());
+			throw std::invalid_argument("Type type does not exist");
 		}
+
 		}
 		bs::Get().takeCustomer(customer);
 		owner = customer;
@@ -43,7 +44,9 @@ namespace bank
 			return true;
 		}
 		else
-			return false;
+		{
+			throw std::invalid_argument("wrong password");
+		}
 	}
 	void UserAccount::logOut()
 	{

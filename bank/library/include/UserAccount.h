@@ -14,24 +14,29 @@ namespace bank
 
 	class UserAccount
 	{
+	protected:
+		bool logIn(uint64_t id, const std::string& password);
+		void newCustomer(char type = 'x');
+		void newAccount(char type = 'x');
+		TransactionRecordPtr transfer(AccountPtr to, double amount, std::string title);
 	public:
 
 		virtual void bankMenu() = 0;
-		void newCustomer(char type = 'x');
-		bool logIn(uint64_t id, const std::string& password);
-
 		virtual void customerMenu() = 0;
-		virtual void logOut();
-		virtual void deleteCustomer();
-		virtual void newAccount(char type = 'x');
-		virtual void getCustomerHistory() = 0;
-
 		virtual void accountMenu() = 0;
-		virtual void deleteAccount();
-		virtual void getAccountHistory() = 0;
-		TransactionRecordPtr transfer(AccountPtr to, double amount, std::string title);
 
-	private:
+		virtual void logIn() = 0;
+		virtual void logOut();
+
+		virtual void getCustomerHistory() = 0;
+		virtual void getAccountHistory() = 0;
+
+		virtual void deleteCustomer();
+		virtual void deleteAccount();
+
+		virtual void transfer() = 0;
+
+	protected:
 		CustomerPtr owner;
 		AccountPtr account;
 
