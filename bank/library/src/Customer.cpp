@@ -4,12 +4,14 @@
 
 #include "Customer.h"
 
+#include <utility>
+
 namespace bank
 {
 	uint64_t Customer::counter = 0;
 
 	Customer::Customer(std::string name, std::string address, unsigned int telephoneNumber)
-	:name(name), address(address), telephoneNumber(telephoneNumber), id(counter++)
+	:name(std::move(name)), address(std::move(address)), telephoneNumber(telephoneNumber), id(counter++)
 	{
 
 	}

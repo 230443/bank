@@ -10,8 +10,8 @@
 
 #include "../include/Customer.h"
 #include "../include/typedefs.h"
-//#include "../include/Person.h"
-//#include "../include/Company.h"
+#include "../include/Person.h"
+#include "../include/Company.h"
 
 using namespace bank;
 
@@ -24,8 +24,8 @@ BOOST_AUTO_TEST_SUITE(CustomerTestSuit)
 	BOOST_AUTO_TEST_CASE(Customer_createThenGetId)
 	{
 		Customer c1;
-		Customer c2;
-		Customer c3;
+		Person c2;
+		Company c3;
 		BOOST_REQUIRE_LT(c1.getId(), c2.getId());
 		BOOST_REQUIRE_GT(c3.getId(), c2.id);
 		BOOST_REQUIRE_EQUAL(c3.getId(), c3.id);

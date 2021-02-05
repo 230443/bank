@@ -12,6 +12,8 @@
 
 #include "../include/BankingSystem.h"
 #include "../include/Customer.h"
+#include "../include/Person.h"
+#include "../include/Company.h"
 #include "../include/typedefs.h"
 
 
@@ -32,24 +34,26 @@ BOOST_AUTO_TEST_SUITE(BankingSystemTestSuit)
 		//customer1 = BankingSystem::Get().addCustomer(p);
 		//customer2 = BankingSystem::Get().addCustomer(c);
 		auto c1 = std::make_shared<Customer>(Customer());
-		auto c2 = std::make_shared<Customer>(Customer());
+		auto c2 = std::make_shared<Customer>(Person());
+		auto c3 = std::make_shared<Customer>(Company());
 
 		auto id1 = c1->id;
 		auto id2 = c2->id;
+		auto id3 = c3->id;
 
 		bs::Get().takeCustomer(c1);
 		bs::Get().takeCustomer(c2);
+		bs::Get().takeCustomer(c3);
 
 		BOOST_REQUIRE_NE(id1,id2);
 		BOOST_REQUIRE_EQUAL(id1,bs::Get().getCustomer(id1)->id);
 		BOOST_REQUIRE_EQUAL(id2,bs::Get().getCustomer(id2)->id);
+		BOOST_REQUIRE_EQUAL(id3,bs::Get().getCustomer(id3)->id);
 		BOOST_REQUIRE_GT(bs::Get().getCustomer(id2)->id,bs::Get().getCustomer(id1)->id);
 	}
 
 	BOOST_AUTO_TEST_CASE(BankingSystem_newCustomer)
 	{
-		auto c3 = std::make_shared<Customer>(Customer("c3"));
-		auto c4 = std::make_shared<Customer>(Customer("c4"));
 		auto c1 = bs::Get().newCustomer();
 		auto c2 = bs::Get().newCustomer();
 

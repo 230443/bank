@@ -40,8 +40,7 @@ namespace bank
 		void transfer(AccountPtr from, AccountPtr to, double amount, std::string title = "Transfer");
 
 
-
-		std::shared_ptr<Customer> LogIn(std::string password, u_int64_t id);
+		CustomerPtr LogIn( u_int64_t id, std::string password);
 
 	};
 

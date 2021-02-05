@@ -8,6 +8,7 @@
 #include <chrono>
 #include <string>
 #include <compare>
+#include <utility>
 //#include <memory>
 
 #include "typedefs.h"
@@ -32,8 +33,8 @@ namespace bank
 		//const currency c;
 
 		TransactionRecord(
-			AccountPtr formAccount,
-			AccountPtr toAccount,
+			const AccountPtr& formAccount,
+			const AccountPtr& toAccount,
 			const double amount,
 			std::string  title = "Transfer")
 			: date(std::chrono::system_clock::now()),
