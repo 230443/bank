@@ -125,8 +125,9 @@ BOOST_AUTO_TEST_SUITE(BankingSystemTestSuit)
 	{
 		auto c0 = bs::Get().newCustomer();
 		auto number = c0->newAccount()->getNumber();
-
 		BOOST_REQUIRE_THROW(bs::Get().getAccount(number+1),std::invalid_argument);
+		c0->deleteAccount(number);
+		BOOST_REQUIRE_THROW(bs::Get().getAccount(number),std::invalid_argument);
 	}
 
 

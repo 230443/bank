@@ -84,5 +84,22 @@ namespace bank
 		}
 		return TrHist;
 	}
+	const AccountPtr Customer::getAccount(uint64_t number) const
+	{
+		for(auto account : accounts)
+			if (account->number == number)
+				return account;
+		throw std::invalid_argument("Account does not exist");
+	}
+	void Customer::deleteAccount(uint64_t number)
+	{
+		for (auto it = accounts.begin(); it != accounts.end();  ++it )
+			if ((*it)->number == number)
+			{
+				accounts.erase(it);
+				return;
+			}
+		throw std::invalid_argument("Account already does not exist");
+	}
 
 }

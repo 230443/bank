@@ -98,7 +98,40 @@ BOOST_AUTO_TEST_SUITE(CustomerTestSuit)
 		{
 			BOOST_REQUIRE_CLOSE(transaction.amount,i++,0.1);
 		}
+
 	}
+
+	BOOST_AUTO_TEST_CASE(Customer_getAccount)
+	{
+		auto c0 = bs::Get().newCustomer();
+
+		AccountPtr a[4];
+		a[0] = c0->newAccount();
+		a[1] = c0->newAccount();
+		a[2] = c0->newAccount();
+
+		BOOST_REQUIRE_EQUAL(c0->getAccount(a[1]->number),a[1]);
+		BOOST_REQUIRE_NE(c0->getAccount(a[2]->number),a[1]);
+		BOOST_REQUIRE_THROW(c0->getAccount(a[2]->number+1),std::invalid_argument);
+	}
+
+	BOOST_AUTO_TEST_CASE(Customer_deleteAccount)
+	{
+		auto c0 = bs::Get().newCustomer();
+
+		AccountPtr a[4];
+		a[0] = c0->newAccount();
+		a[1] = c0->newAccount();
+		a[2] = c0->newAccount();
+
+		auto number = a[1]->number;
+		BOOST_REQUIRE_EQUAL(c0->getAccount(number),a[1]);
+		c0->deleteAccount(number);
+		BOOST_REQUIRE_THROW(c0->getAccount(number),std::invalid_argument);
+		BOOST_REQUIRE_THROW(c0->deleteAccount(number),std::invalid_argument);
+	}
+
+
 
 /*
 	BOOST_AUTO_TEST_CASE(Customer_getID)
