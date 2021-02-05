@@ -3,9 +3,10 @@
 //
 
 #include "BankingSystem.h"
+#include <stdexcept>
 
-#include <utility>
 #include "Customer.h"
+
 
 namespace bank
 {
@@ -24,11 +25,23 @@ namespace bank
 	}
 	AccountPtr BankingSystem::getAccount(const int64_t number)
 	{
+		auto account = accounts.find(number);
+		if (account == accounts.end())
+			throw std::invalid_argument( "Account does not exist" );
+		if (account->second.expired())
+		{
+			accounts.erase(account);
+			throw std::invalid_argument("Account has been deleted");
+		}
+
 		return accounts.find(number)->second.lock();
 	}
 	CustomerPtr BankingSystem::getCustomer(const int64_t number)
 	{
-		return customers.find(number)->second;
+		auto customer = customers.find(number);
+		if (customer == customers.end())
+			throw std::invalid_argument( "Customer does not exist" );
+		return customer->second;
 	}
 	CustomerPtr BankingSystem::newCustomer()
 	{

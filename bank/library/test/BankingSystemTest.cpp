@@ -114,5 +114,21 @@ BOOST_AUTO_TEST_SUITE(BankingSystemTestSuit)
 		BOOST_REQUIRE_EQUAL(a[1]->getBalance(),100);
 	}
 
+	BOOST_AUTO_TEST_CASE(BankingSystem_FindWrongCustomerId)
+	{
+		auto c0 = bs::Get().newCustomer();
+		auto id0 = c0->id;
+
+		BOOST_REQUIRE_THROW(bs::Get().getCustomer(id0+1)->id,std::invalid_argument);
+	}
+	BOOST_AUTO_TEST_CASE(BankingSystem_FindWrongAccountNumber)
+	{
+		auto c0 = bs::Get().newCustomer();
+		auto number = c0->newAccount()->getNumber();
+
+		BOOST_REQUIRE_THROW(bs::Get().getAccount(number+1),std::invalid_argument);
+	}
+
+
 
 BOOST_AUTO_TEST_SUITE_END()

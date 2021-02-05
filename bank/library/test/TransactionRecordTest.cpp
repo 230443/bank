@@ -59,6 +59,4 @@ BOOST_AUTO_TEST_SUITE(DataTypesTestSuit)
 	}
 
 
-
-
 BOOST_AUTO_TEST_SUITE_END()
