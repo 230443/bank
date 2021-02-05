@@ -60,9 +60,9 @@ class Customer : public std::enable_shared_from_this<Customer>
 		//	members
 
 		const uint64_t id;
-	static uint64_t counter;
 private:
-	protected:
+	static uint64_t counter;
+protected:
 		//info
 		std::string name;
 		std::string address;

@@ -3,3 +3,9 @@
 //
 
 #include "TransactionRecord.h"
+
+std::ostream& operator<<(std::ostream& stream, bank::TransactionRecord& rhs)
+{
+	stream << rhs.title << " " << rhs.amount;
+	return stream;
+}

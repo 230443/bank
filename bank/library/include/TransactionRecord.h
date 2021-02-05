@@ -9,10 +9,8 @@
 #include <string>
 #include <compare>
 #include <memory>
-#include <utility>
+
 #include "typedefs.h"
-
-
 #include "Account.h"
 
 namespace currency
@@ -22,7 +20,6 @@ namespace currency
 
 namespace bank
 {
-
 	struct TransactionRecord
 	{
 		const std::chrono::time_point<std::chrono::system_clock> date;

@@ -8,6 +8,8 @@
 
 namespace bank
 {
+	uint64_t Account::counter = 0;
+
 	const uint64_t Account::getNumber() const
 	{
 		return number;

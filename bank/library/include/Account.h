@@ -30,13 +30,12 @@ namespace bank
 
 // member fields
 		const uint64_t number;
-		static uint64_t counter;
 	protected:
 		double balance;
 		std::set<TransactionRecordPtr> transactionHistory;
 		std::weak_ptr<Customer> owner;
 	private:
-
+		static uint64_t counter;
 	};
 
 }

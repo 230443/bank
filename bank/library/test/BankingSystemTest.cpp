@@ -21,10 +21,6 @@
 
 using namespace bank;
 
-uint64_t Customer::counter = 0;
-
-uint64_t Account::counter = 0;
-
 
 BOOST_AUTO_TEST_SUITE(BankingSystemTestSuit)
 
@@ -116,16 +112,6 @@ BOOST_AUTO_TEST_SUITE(BankingSystemTestSuit)
 		bs::Get().transfer(a[0],a[1]->getNumber(),100);
 		BOOST_REQUIRE_EQUAL(a[0]->getBalance(),-100);
 		BOOST_REQUIRE_EQUAL(a[1]->getBalance(),100);
-	}
-
-	BOOST_AUTO_TEST_CASE(BankingSystem_transferByAccountNumber)
-	{
-
-	}
-
-	BOOST_AUTO_TEST_CASE(BankingSystem_TestSingleInstance)
-	{
-
 	}
 
 
