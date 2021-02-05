@@ -32,4 +32,20 @@ namespace bank
 		bs::Get().takeCustomer(customer);
 		owner = customer;
 	}
+	bool UserAccount::logIn(uint64_t id, const std::string& password)
+	{
+		auto customer = bs::Get().logIn(id,password);
+		if (customer!= nullptr)
+		{
+			owner = customer;
+			return true;
+		}
+		else
+			return false;
+	}
+	void UserAccount::logOut()
+	{
+		account.reset();
+		owner.reset();
+	}
 }

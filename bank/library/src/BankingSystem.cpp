@@ -66,6 +66,14 @@ namespace bank
 		//getCustomer(id).reset();
 		customers.erase(id);
 	}
+	CustomerPtr BankingSystem::logIn(u_int64_t id, const std::string& password)
+	{
+		auto c = getCustomer(id);
+		if (c->isPasswordValid(password))
+			return c;
+		else
+			return nullptr;
+	}
 
 }
 

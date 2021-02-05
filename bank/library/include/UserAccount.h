@@ -18,7 +18,7 @@ namespace bank
 
 		virtual void bankMenu() = 0;
 		void newCustomer(char type);
-		bool logIn(uint64_t id, uint64_t password);
+		bool logIn(uint64_t id, const std::string& password);
 
 		virtual void customerMenu() = 0;
 		void logOut();

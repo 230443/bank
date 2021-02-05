@@ -22,6 +22,8 @@ class Customer : public std::enable_shared_from_this<Customer>
 	public:
 		Customer(std::string name = "customer", std::string address = "", unsigned int telephoneNumber = 0);
 
+		bool isPasswordValid(const std::string& password);
+
 
 		// getters
 		const uint64_t getId() const;

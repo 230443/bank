@@ -25,8 +25,9 @@ namespace bank
 	public:
 		static BankingSystem& Get();
 
+		CustomerPtr logIn( u_int64_t id, const std::string& password);
 
-
+	//private: made public for testing
 		AccountPtr getAccount(int64_t number);
 		CustomerPtr getCustomer(int64_t number);
 
@@ -39,8 +40,6 @@ namespace bank
 		TransactionRecordPtr transfer(AccountPtr from, int64_t number,double amount, std::string title = "Transfer");
 		TransactionRecordPtr transfer(AccountPtr from, AccountPtr to, double amount, std::string title = "Transfer");
 
-
-		CustomerPtr LogIn( u_int64_t id, std::string password);
 
 	};
 

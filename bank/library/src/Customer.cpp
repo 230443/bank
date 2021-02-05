@@ -103,5 +103,9 @@ namespace bank
 			}
 		throw std::invalid_argument("Account already does not exist");
 	}
+	bool Customer::isPasswordValid(const std::string& password)
+	{
+		return Customer::password == password;
+	}
 
 }

@@ -43,7 +43,7 @@ endif()
 
 set(SOURCE_TEST_FILES
         test/master.cpp
-        test/TransactionRecordTest.cpp test/AccountTest.cpp test/BankingSystemTest.cpp test/CustomerTest.cpp)
+        test/TransactionRecordTest.cpp test/AccountTest.cpp test/BankingSystemTest.cpp test/CustomerTest.cpp test/UserAccountTest.cpp)
 
 include_directories(
         ${CMAKE_CURRENT_SOURCE_DIR}/include
