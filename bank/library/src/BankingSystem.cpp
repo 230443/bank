@@ -49,16 +49,17 @@ namespace bank
 		customers.insert({newCustomer->id,newCustomer});
 		return newCustomer;
 	}
-	void BankingSystem::transfer(AccountPtr from, AccountPtr to, double amount, std::string title)
+	TransactionRecordPtr BankingSystem::transfer(AccountPtr from, AccountPtr to, double amount, std::string title)
 	{
 		auto tr = std::make_shared<TransactionRecord>(TransactionRecord(from,to,amount,std::move(title)));
 		from->transaction(-amount,tr);
 		to->transaction(+amount,tr);
 		transactions.push_back(tr);
+		return tr;
 	}
-	void BankingSystem::transfer(AccountPtr from, int64_t number, double amount, std::string title)
+	TransactionRecordPtr BankingSystem::transfer(AccountPtr from, int64_t number, double amount, std::string title)
 	{
-		transfer(std::move(from),getAccount(number),amount,std::move(title));
+		return transfer(std::move(from),getAccount(number),amount,std::move(title));
 	}
 	void BankingSystem::deleteCustomer(int64_t id)
 	{

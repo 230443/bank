@@ -36,8 +36,8 @@ namespace bank
 		CustomerPtr newCustomer();
 		void deleteCustomer(int64_t id);
 
-		void transfer(AccountPtr from, int64_t number,double amount, std::string title = "Transfer");
-		void transfer(AccountPtr from, AccountPtr to, double amount, std::string title = "Transfer");
+		TransactionRecordPtr transfer(AccountPtr from, int64_t number,double amount, std::string title = "Transfer");
+		TransactionRecordPtr transfer(AccountPtr from, AccountPtr to, double amount, std::string title = "Transfer");
 
 
 		CustomerPtr LogIn( u_int64_t id, std::string password);

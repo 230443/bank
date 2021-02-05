@@ -13,6 +13,8 @@ namespace bank
 	class Customer;
 	class TransactionRecord;
 	class BankingSystem;
+	class Person;
+	class Company;
 
 	using bs = bank::BankingSystem;
 
