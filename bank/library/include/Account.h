@@ -7,6 +7,7 @@
 
 #include <set>
 #include <memory>
+#include <ostream>
 #include "typedefs.h"
 
 
@@ -28,7 +29,7 @@ namespace bank
 
 		virtual void transaction(double amount, TransactionRecordPtr record);
 		//std::string getOwnerInfo();
-
+		friend std::ostream& operator<<(std::ostream& os, const Account& account);
 // member fields
 		const uint64_t number;
 	protected:

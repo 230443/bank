@@ -25,7 +25,7 @@ namespace bank
 		virtual void customerMenu() = 0;
 		virtual void accountMenu() = 0;
 
-		virtual void logIn() = 0;
+		virtual bool logIn() = 0;
 		virtual void logOut();
 
 		virtual void getCustomerHistory() = 0;

@@ -44,9 +44,7 @@ namespace bank
 			return true;
 		}
 		else
-		{
-			throw std::invalid_argument("wrong password");
-		}
+			return false;
 	}
 	void UserAccount::logOut()
 	{

@@ -48,4 +48,9 @@ namespace bank
 			history->insert(*it);
 		return history;
 	}
+	std::ostream& operator<<(std::ostream& os, const Account& account)
+	{
+		os << "number: " << account.number << " balance: " << account.balance;
+		return os;
+	}
 }

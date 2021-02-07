@@ -131,6 +131,28 @@ BOOST_AUTO_TEST_SUITE(CustomerTestSuit)
 		BOOST_REQUIRE_THROW(c0->deleteAccount(number),std::invalid_argument);
 	}
 
+	BOOST_AUTO_TEST_CASE(Customer_PrintAccounts)
+	{
+		auto c0 = bs::Get().newCustomer();
+
+		AccountPtr a[4];
+		a[0] = c0->newAccount();
+		a[1] = c0->newAccount();
+		a[2] = c0->newAccount();
+		a[3] = c0->newAccount();
+
+		bs::Get().transfer(a[0],a[3],1, "tr1");
+		bs::Get().transfer(a[3],a[1],2, "tr2");
+		bs::Get().transfer(a[1],a[0],3, "tr3");
+		bs::Get().transfer(a[2],a[2],4, "tr4");
+
+		auto accounts = c0->getAccounts();
+		for (const auto& account: accounts)
+		{
+			std::cout<<*account<<std::endl;
+		}
+	}
+
 
 
 /*

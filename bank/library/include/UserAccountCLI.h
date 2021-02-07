@@ -16,15 +16,19 @@ namespace bank
 		static void start();
 		void bankMenu() override;
 		void customerMenu() override;
+		void printBankMenu();
+		void printCustomerMenu();
+		void printYourAccounts();
 		void accountMenu() override;
-		void logIn() override;
+		bool logIn() override;
 		void logOut() override;
 
-		void newCustomer();
-		void goToAccount(int position);
+		bool newCustomer();
+		void goToAccount(std::string position);
 		void setName();
-		void setpassword();
-		void setAddres();
+		void setPassword();
+		void setAddress();
+		bool isNumber(std::string str);
 
 		void getCustomerHistory() override;
 		void getAccountHistory() override;
