@@ -37,8 +37,15 @@ namespace bank
 	}
 	bool UserAccount::logIn(uint64_t id, const std::string& password)
 	{
+		try{
+			auto customer = bs::Get().logIn(id,password);
+		}
+		catch (std::exception& e)
+		{
+			return false;
+		}
 		auto customer = bs::Get().logIn(id,password);
-		if (customer!= nullptr)
+		if (customer != nullptr)
 		{
 			owner = customer;
 			return true;
@@ -48,8 +55,8 @@ namespace bank
 	}
 	void UserAccount::logOut()
 	{
-		account.reset();
-		owner.reset();
+		account = AccountPtr(nullptr);
+		owner = CustomerPtr(nullptr);
 	}
 	void UserAccount::deleteCustomer()
 	{
@@ -65,10 +72,10 @@ namespace bank
 		owner->deleteAccount(account);
 		account.reset();
 	}
-	TransactionRecordPtr UserAccount::transfer(AccountPtr to, double amount, std::string title)
+	TransactionRecordPtr UserAccount::transfer(uint64_t to, double amount, std::string title)
 	{
 		if (account != nullptr)
-			return bs::Get().transfer(account,std::move(to),amount,std::move(title));
+			return bs::Get().transfer(account,to,amount,std::move(title));
 		else
 			throw std::exception();
 	}

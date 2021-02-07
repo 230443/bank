@@ -18,7 +18,7 @@ namespace bank
 		bool logIn(uint64_t id, const std::string& password);
 		void newCustomer(char type = 'x');
 		void newAccount(char type = 'x');
-		TransactionRecordPtr transfer(AccountPtr to, double amount, std::string title);
+		TransactionRecordPtr transfer(uint64_t to, double amount, std::string title);
 	public:
 
 		virtual void bankMenu() = 0;

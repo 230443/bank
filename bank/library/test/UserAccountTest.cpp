@@ -7,7 +7,7 @@
 
 
 #include "../include/BankingSystem.h"
-#include "../include/UserAccount.h"
+#include "../include/UserAccountCLI.h"
 //#include "../include/Customer.h"
 //#include "../include/typedefs.h"
 
@@ -19,11 +19,11 @@ using namespace bank;
 BOOST_AUTO_TEST_SUITE(UserAccountTestSuit)
 
 
-	BOOST_AUTO_TEST_CASE(UserAccount_operators)
-	{
-		//UserAccount session;
-		//BOOST_REQUIRE_EQUAL(tr1<tr2,true);
-	}
+	//BOOST_AUTO_TEST_CASE(UserAccount_operators)
+	//{
+	//	UserAccountCLI session;
+	//	//BOOST_REQUIRE_EQUAL(tr1<tr2,true);
+	//}
 
 
 

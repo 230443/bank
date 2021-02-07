@@ -13,6 +13,7 @@ std::string getTimeStr(std::chrono::time_point<std::chrono::system_clock> date){
 	return s;
 }
 
+/*
 
 std::ostream& operator<<(std::ostream& stream, const bank::TransactionRecord& rhs)
 {
@@ -25,4 +26,16 @@ std::ostream& operator<<(std::ostream& stream, const bank::TransactionRecord& rh
 		<< rhs.to_name << "("
 		<< rhs.to_accountNumber << ")";
 	return stream;
+}*/
+std::ostream& bank::operator<<(std::ostream& os, const bank::TransactionRecord& rhs)
+{
+	os //<< rhs.date.time_since_epoch().count()<< " "
+		<< getTimeStr(rhs.date) << " "
+		<< rhs.title << " "
+		<< rhs.amount << " "
+		<< rhs.from_name << "("
+		<< rhs.from_accountNumber << ") "
+		<< rhs.to_name << "("
+		<< rhs.to_accountNumber << ")";
+	return os;
 }

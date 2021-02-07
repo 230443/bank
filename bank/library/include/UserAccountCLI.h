@@ -14,17 +14,19 @@ namespace bank
 	{
 	public:
 		static void start();
+	private:
 		void bankMenu() override;
 		void customerMenu() override;
+		void accountMenu() override;
 		void printBankMenu();
 		void printCustomerMenu();
+		void printAccountMenu();
 		void printYourAccounts();
-		void accountMenu() override;
 		bool logIn() override;
 		void logOut() override;
 
 		bool newCustomer();
-		void goToAccount(std::string position);
+		void goToAccount();
 		void setName();
 		void setPassword();
 		void setAddress();

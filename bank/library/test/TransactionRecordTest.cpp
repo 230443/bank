@@ -6,7 +6,7 @@
 #include <memory>
 
 #include "../include/TransactionRecord.h"
-#include "../src/TransactionRecord.cpp"
+
 #include "../include/BankingSystem.h"
 #include "../include/Customer.h"
 //#include "../include/typedefs.h"

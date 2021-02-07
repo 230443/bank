@@ -7,8 +7,8 @@
 
 #include <boost/test/unit_test.hpp>
 #include <memory>
-#include <TransactionRecord.h>
 
+#include "../include/TransactionRecord.h"
 #include "../include/Account.h"
 #include "../include/Customer.h"
 //#include "../include/typedefs.h"
@@ -59,9 +59,27 @@ BOOST_AUTO_TEST_SUITE(AccountTestSuit)
 		BOOST_REQUIRE_EQUAL(a1->getTransactionRecords().size(),1);
 		BOOST_REQUIRE_EQUAL(*(a0->getTransactionRecords().begin())==*(a1->getTransactionRecords().begin()),true);
 	}
+	BOOST_AUTO_TEST_CASE(Customer_PrintAccounts)
+	{
+		auto c0 = bs::Get().newCustomer();
 
+		AccountPtr a[4];
+		a[0] = c0->newAccount();
+		a[1] = c0->newAccount();
+		a[2] = c0->newAccount();
+		a[3] = c0->newAccount();
 
+		bs::Get().transfer(a[0], a[3], 1, "tr1");
+		bs::Get().transfer(a[1], a[0], 2, "tr2");
+		bs::Get().transfer(a[2], a[0], 3, "tr3");
+		bs::Get().transfer(a[3], a[0], 4, "tr4");
 
+		auto history = a[0]->getHistory();
+		for (TransactionRecord record: *history)
+		{
+			std::cout<<record<<std::endl;
+		}
 
-BOOST_AUTO_TEST_SUITE_END()
+	}
+	BOOST_AUTO_TEST_SUITE_END()
 

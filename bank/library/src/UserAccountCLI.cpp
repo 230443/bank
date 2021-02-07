@@ -49,15 +49,14 @@ namespace bank
 			cin >> str;
 			if (str == "a")
 			{
-				printYourAccounts();
+				goToAccount();
 				printCustomerMenu();
 				continue;
 			}
 			if (str == "n")
 			{
 				UserAccount::newAccount();
-				accountMenu();
-				printCustomerMenu();
+				cout<<"account created"<<endl;
 				continue;
 			}
 			if (str == "h")
@@ -88,38 +87,40 @@ namespace bank
 				deleteCustomer();
 				continue;
 			}
+			if (str == "q")
+			{
+				logOut();
+				return;
+			}
 			cout<<"Command not found."<<endl;
 		} while (str != "q"||str != "Q");
 		logOut();
 	}
 	void UserAccountCLI::accountMenu()
 	{
-		cout<<"Account number: "<<account->getNumber()<<"\tBalance: "<<account->getBalance()<<endl
-			<<"h"<<"\t"<<"Transaction History"<<endl
-			<<"d"<<"\t"<<"Delete this Account"<<endl
-			<<"t"<<"\t"<<"Make transfer"<<endl
-			<<"b"<<"\t"<<"Go to the customer account"<<endl;
+		printAccountMenu();
 
-		int c;
-		do {
-			c = getchar();
-			switch (c)
-			{
-			case 'h':
+		string str;
+		do
+		{
+			cout<<endl<<":";
+			cin >> str;
+
+			if (str == "h")
 				getAccountHistory();
-			case 'd':
+			if (str == "d")
+			{
 				deleteAccount();
-			case 't':
+				return;
+			}
+			if (str == "t")
 				transfer();
-			case 'b':
+			if (str == "q")
 			{
 				account = AccountPtr(nullptr);
 				return;
 			}
-			default:
-				putchar(c);
-			}
-		} while (c != 'Q');
+		} while (str != "Q");
 
 	}
 	bool UserAccountCLI::logIn()
@@ -137,17 +138,16 @@ namespace bank
 			{
 				if (UserAccount::logIn(stoi(id), password))
 					return true;
+
 			}
+
+			cout << "login failed. Do you want to continue?[y/N]: ";
+			string c;
+			cin >> c;
+			if (c == "Y" || c == "y")
+				continue;
 			else
-			{
-				cout << "login failed. Do you want to continue?[y/N]: ";
-				string c;
-				cin >> c;
-				if (c == "Y" || c == "y")
-					continue;
-				else
-					return false;
-			}
+				return false;
 		}
 	}
 	void UserAccountCLI::logOut()
@@ -157,10 +157,22 @@ namespace bank
 	}
 	void UserAccountCLI::getCustomerHistory()
 	{
+		auto history = owner->getHistory();
+		cout<<"date\t\t\ttitle\tamount\tfrom\tto"<<endl;
+		for (const auto& record : *history)
+		{
+			cout<<record<<endl;
+		}
 
 	}
 	void UserAccountCLI::getAccountHistory()
 	{
+		auto history = account->getHistory();
+		cout<<"date\t\t\ttitle\tamount\tfrom\tto"<<endl;
+		for (const auto& record : *history)
+		{
+			cout<<record<<endl;
+		}
 
 	}
 	void UserAccountCLI::deleteCustomer()
@@ -171,11 +183,38 @@ namespace bank
 	void UserAccountCLI::deleteAccount()
 	{
 		UserAccount::deleteAccount();
-		customerMenu();
 	}
 	void UserAccountCLI::transfer()
 	{
 
+		while (true)
+		{
+			string number, amount, title;
+			cout << "Account number: ";
+			cin >> number;
+			cout << "Title: ";
+			cin >> title;
+			cout << "Amount: ";
+			cin >> amount;
+			try
+			{
+				UserAccount::transfer(stoi(number),stod(amount),title);
+			}
+			catch (exception& e)
+			{
+				cout<<e.what()<<endl;
+				cout << "Error. Do you want to try again?[y/N]: ";
+				string c;
+				cin >> c;
+				if (c == "Y" || c == "y")
+					continue;
+				else
+					return;
+			}
+			auto confirmation = UserAccount::transfer(stoi(number),stod(amount),title);
+			cout<<*confirmation<<endl;
+			return;
+		}
 	}
 	bool UserAccountCLI::newCustomer()
 	{
@@ -211,21 +250,24 @@ namespace bank
 
 
 	}
-	void UserAccountCLI::goToAccount(string position)
+	void UserAccountCLI::goToAccount()
 	{
 		printYourAccounts();
+		cout<<"q\t quit"<<endl<<":";
+		string position;
+		cin>>position;
 
 		if (!isNumber(position))	return;
 		int p = stoi(position);
 
 		auto accounts = owner->getAccounts();
-		if (p>=1 && p<accounts.size())
+		if (p>=1 && p<=accounts.size())
 		{
-			account = accounts[p];
+			account = accounts[p-1];
 			accountMenu();
 		}
 		else
-			throw std::invalid_argument("No account with this index");
+			cout<<"No account with this index"<<endl;
 	}
 	void UserAccountCLI::setName()
 	{
@@ -256,7 +298,7 @@ namespace bank
 	void UserAccountCLI::printCustomerMenu()
 	{
 
-		cout<<"Your Account \t Client Id: "<<owner->getId()<<endl;
+		cout<<"Customer:"<< owner->getName()<<"\t Client Id: "<<owner->getId()<<endl;
 
 		cout<<"n"<<"\t"<<"New Account"<<endl
 			<<"a"<<"\t"<<"Your accounts"<<endl
@@ -273,7 +315,7 @@ namespace bank
 		int i = 1;
 		for (const auto& account: accounts)
 		{
-			cout<<i<<"\t"<<*account<<endl;
+			cout<<i++<<"\t"<<*account<<endl;
 		}
 	}
 	bool UserAccountCLI::isNumber(std::string str)
@@ -294,5 +336,13 @@ namespace bank
 			<<'l'<<"\t"<<"Log in"<<endl
 			<<'n'<<"\t"<<"Create Account"<<endl
 			<<"q"<<"\t"<<"Exit"<<endl;
+	}
+	void UserAccountCLI::printAccountMenu()
+	{
+		cout<<*account<<endl
+			<<"h"<<"\t"<<"Transaction History"<<endl
+			<<"d"<<"\t"<<"Delete this Account"<<endl
+			<<"t"<<"\t"<<"Make transfer"<<endl
+			<<"q"<<"\t"<<"Go to the customer account"<<endl;
 	}
 }

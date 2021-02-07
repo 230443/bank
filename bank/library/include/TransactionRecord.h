@@ -9,6 +9,7 @@
 #include <string>
 #include <compare>
 #include <utility>
+#include <ostream>
 //#include <memory>
 
 #include "typedefs.h"
@@ -63,6 +64,7 @@ namespace bank
 			return date <=> rhs.date;
 		}
 		bool operator==(const TransactionRecord& rhs) const = default;
+		friend std::ostream& operator<<(std::ostream& os, const TransactionRecord& record);
 	};
 }
 
