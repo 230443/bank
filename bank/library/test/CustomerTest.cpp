@@ -153,56 +153,35 @@ BOOST_AUTO_TEST_SUITE(CustomerTestSuit)
 		}
 	}
 
-
-
-/*
-	BOOST_AUTO_TEST_CASE(Customer_getID)
-	{
-		Customer c1("Daniel","w1 95-100",457154);
-		Person c2("Daniel","w1 95-100",457154,11567187);
-		Company c3("Daniel","w1 95-100",457154,18679814);
-
-		Customer c4;
-		Person c5;
-		Company c6;
-
-		BOOST_REQUIRE_EQUAL(c1.GetId(), 1);
-		BOOST_REQUIRE_EQUAL(c2.GetId(), 2);
-		BOOST_REQUIRE_EQUAL(c3.GetId(), 3);
-		BOOST_REQUIRE_EQUAL(c4.GetId(), 4);
-		BOOST_REQUIRE_EQUAL(c5.GetId(), 5);
-		BOOST_REQUIRE_EQUAL(c6.GetId(), 6);
-	}
-
-	BOOST_AUTO_TEST_CASE(Customer_getName)
-	{
-		Customer c1("John","w1 95-100",457154);
-		Person c2("Doe","w1 95-100",457154,11567187);
-		Company c3("Kowalski","w1 95-100",457154,18679814);
-
-		Customer c4;
-		Person c5;
-		Company c6;
-
-		BOOST_REQUIRE_EQUAL(c1.GetName(), "John");
-		BOOST_REQUIRE_EQUAL(c2.GetName(), "Doe");
-		BOOST_REQUIRE_EQUAL(c3.GetName(), "Kowalski");
-		BOOST_REQUIRE_EQUAL(c4.GetName(), "customer");
-		BOOST_REQUIRE_EQUAL(c5.GetName(), "person");
-		BOOST_REQUIRE_EQUAL(c6.GetName(), "company");
-	}
-	BOOST_AUTO_TEST_CASE(Customer_comparisonTest)
+	BOOST_AUTO_TEST_CASE(Customer_setNumber_Overriden)
 	{
 		Person c1("Doe","w1 95-100",457154,11567187);
 		Company c2("Kowalski","w1 95-100",457154,18679814);
 
-		BOOST_REQUIRE_EQUAL(c1<c2, true);
-		BOOST_REQUIRE_EQUAL(c2>=c1, true);
-		BOOST_REQUIRE_EQUAL(c1==c1,true);
-		BOOST_REQUIRE_EQUAL(c1!=c2,true);
+		CustomerPtr ptr1 = std::make_shared<Person>(c1);
+		CustomerPtr ptr2 = std::make_shared<Company>(c2);
+		uint64_t number = 789456132;
+		ptr1->setNumber(number);
+		ptr2->setNumber(number+100);
+		BOOST_REQUIRE_EQUAL(ptr1->getNumber() , number);
+		BOOST_REQUIRE_EQUAL(ptr2->getNumber() , number+100);
+
+	}
+	BOOST_AUTO_TEST_CASE(Customer_setNumber_OverridenOnRawPointers)
+	{
+		Person c1("Doe","w1 95-100",457154,11567187);
+		Company c2("Kowalski","w1 95-100",457154,18679814);
+
+		Customer* ptr1 = &c1;
+		Customer* ptr2 = &c2;
+		uint64_t number = 789456132;
+		ptr1->setNumber(number);
+		ptr2->setNumber(number+100);
+		BOOST_REQUIRE_EQUAL(ptr1->getNumber() , number);
+		BOOST_REQUIRE_EQUAL(ptr2->getNumber() , number+100);
+
 	}
 
-*/
 
 
 BOOST_AUTO_TEST_SUITE_END()

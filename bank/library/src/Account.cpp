@@ -28,7 +28,7 @@ namespace bank
 	}
 	std::string Account::getName()
 	{
-		return owner.lock()->getName();
+		return owner.lock()->getInfo();
 	}
 	void Account::transaction(double amount, TransactionRecordPtr record)
 	{

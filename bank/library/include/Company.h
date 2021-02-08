@@ -15,8 +15,11 @@ namespace bank
 	public:
 		Company(std::string name = "company", std::string address = "", unsigned int telephoneNumber = 0, uint64_t nip = 0);
 
+		std::string getInfo() const override;
 		uint64_t getNip() const;
+		uint64_t getNumber() const override;
 		void setNip(uint64_t nip);
+		void setNumber(uint64_t number) override;
 
 	private:
 		uint64_t nip;

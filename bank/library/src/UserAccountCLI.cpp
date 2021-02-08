@@ -245,6 +245,7 @@ namespace bank
 			setPassword();
 			setName();
 			setAddress();
+			setNumber();
 			return true;
 		}
 
@@ -344,5 +345,25 @@ namespace bank
 			<<"d"<<"\t"<<"Delete this Account"<<endl
 			<<"t"<<"\t"<<"Make transfer"<<endl
 			<<"q"<<"\t"<<"Go to the customer account"<<endl;
+	}
+	void UserAccountCLI::setNumber()
+	{
+		while (true)
+		{
+			cout << "NIP/PESEL: ";
+			string str;
+			cin >> str;
+			try
+			{
+				stoll(str);
+			}
+			catch (exception& e)
+			{
+				cout << "Error. Enter correct number." << endl;
+				continue;
+			}
+			owner->setNumber(stoll(str));
+			return;
+		}
 	}
 }

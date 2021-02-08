@@ -123,6 +123,18 @@ namespace bank
 		accounts.push_back(account);
 		bs::Get().takeAccount(accounts.back());
 	}
+	std::string Customer::getInfo() const
+	{
+		return name;
+	}
+	void Customer::setNumber(uint64_t number)
+	{
 
+
+	}
+	uint64_t Customer::getNumber() const
+	{
+		return 100;
+	}
 
 }

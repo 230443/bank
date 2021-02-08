@@ -17,5 +17,17 @@ namespace bank
 	{
 		Company::nip = nip;
 	}
+	std::string Company::getInfo() const
+	{
+		return name + " " + std::to_string(nip);
+	}
+	void Company::setNumber(uint64_t number)
+	{
+		nip = number;
+	}
+	uint64_t Company::getNumber() const
+	{
+		return nip;
+	}
 
 }

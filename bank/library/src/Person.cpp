@@ -20,4 +20,16 @@ namespace bank
 	{
 		Person::pesel = pesel;
 	}
+	std::string Person::getInfo() const
+	{
+		return name + " " + address;;
+	}
+	void Person::setNumber(uint64_t number)
+	{
+		pesel = number;
+	}
+	uint64_t Person::getNumber() const
+	{
+		return pesel;
+	}
 }

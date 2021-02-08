@@ -18,12 +18,12 @@ namespace bank
 		{
 		case 'p':
 		{
-			customer = std::make_shared<Customer>(Person());
+			customer = std::make_shared<Person>(Person());
 			break;
 		}
 		case 'c':
 		{
-			customer = std::make_shared<Customer>(Company());
+			customer = std::make_shared<Company>(Company());
 			break;
 		}
 		default:

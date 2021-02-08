@@ -30,6 +30,7 @@ namespace bank
 		void setName();
 		void setPassword();
 		void setAddress();
+		void setNumber();
 		bool isNumber(std::string str);
 
 		void getCustomerHistory() override;

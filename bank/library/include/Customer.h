@@ -27,6 +27,8 @@ class Customer : public std::enable_shared_from_this<Customer>
 
 		// getters
 		const uint64_t getId() const;
+		virtual uint64_t getNumber() const;
+		virtual std::string getInfo() const;
 		const std::string& getName() const;
 		const std::string& getAddress() const;
 		unsigned int getTelephoneNumber() const;
@@ -38,6 +40,7 @@ class Customer : public std::enable_shared_from_this<Customer>
 
 		// setters
 		void setName(const std::string& name);
+		virtual void setNumber(uint64_t number);
 		void setAddress(const std::string& address);
 		void setPassword(const std::string& password);
 		void setTelephoneNumber(unsigned int telephoneNumber);
