@@ -33,11 +33,12 @@ namespace bank
 				printBankMenu();
 				continue;
 			case 'q':
-				exit(0);
+				//exit(0);
+				break;
 			default:
 				putchar(c);
 			}
-		} while (c != 'Q');
+		} while (c != 'q');
 	}
 	void UserAccountCLI::customerMenu()
 	{

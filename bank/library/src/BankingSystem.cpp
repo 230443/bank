@@ -4,6 +4,7 @@
 
 #include "BankingSystem.h"
 #include <stdexcept>
+#include <iostream>
 
 #include "Customer.h"
 
@@ -73,6 +74,11 @@ namespace bank
 			return c;
 		else
 			return nullptr;
+	}
+	BankingSystem::~BankingSystem()
+	{
+		std::cout<<"BankingSystem finished"<<std::endl;
+
 	}
 
 }

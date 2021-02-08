@@ -24,6 +24,7 @@ namespace bank
 		//BankingSystem(const BankingSystem&);
 	public:
 		static BankingSystem& Get();
+		~BankingSystem();
 
 		CustomerPtr logIn( u_int64_t id, const std::string& password);
 
